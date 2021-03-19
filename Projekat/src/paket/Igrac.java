@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.LinkedList;
+
+import org.json.JSONObject;
 
 public class Igrac extends Thread{
 	
@@ -16,21 +19,25 @@ public class Igrac extends Thread{
 	public Igrac(Socket soket) {
 		this.soket = soket;
 	}
-
-	public static void posaljiSvima(String korIme) {
-		for (Igrac i : Server.igraci) {
-			i.clientOutput.println(korIme);
-		}
-	}
 	
 	public void run() {
 		try {
 			clientInput = new BufferedReader(new InputStreamReader(soket.getInputStream()));
 			clientOutput = new PrintStream(soket.getOutputStream());
-			clientOutput.println("Unesite Vase korisnicko ime: ");
 			ime = clientInput.readLine();
+			
+			LinkedList<String> imenaIgraca = new LinkedList<String>();
 			for (Igrac i : Server.igraci) {
-				posaljiSvima(i.ime);
+				imenaIgraca.push(i.ime);
+			}
+			
+			JSONObject odgovor = new JSONObject();
+			odgovor.put("tip", "lista_igraca");
+			odgovor.put("igraci", imenaIgraca);
+			System.out.println(odgovor);
+			
+			for (Igrac i : Server.igraci) {
+				i.clientOutput.println(odgovor.toString());
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
