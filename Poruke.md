@@ -103,5 +103,3 @@ Polje `"nacin"` je `"vreme_isteklo"` ili `"svi_pogodili"`.
   ]
 }
 ```
-
-### pocetno stanje?
