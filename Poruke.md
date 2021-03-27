@@ -41,6 +41,7 @@
 
 ## 🤖 Poruke koje šalje server
 ### Lista igrača
+Klijent na osnovu liste igrača može da zaključi u koje stanje igre mora da se vrati. Klijent zna ko je igrač koji crta i koliko igrača ima, u svakom trenutku.
 ```json
 {
   "tip": "lista_igraca",
@@ -48,10 +49,12 @@
 }
 ```
 
-### Igra je pokrenuta
+### Početak runde
+Ovo šaljemo svima osim izabranom igraču, koji prima poruku tipa `"ponudjen_izbor"`.
 ```json
 {
-  "tip": "igra_pokrenuta"
+  "tip": "pocetak_runde",
+  "izabrani": "janko"
 }
 ```
 
