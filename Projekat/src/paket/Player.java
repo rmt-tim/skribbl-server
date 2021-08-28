@@ -216,7 +216,7 @@ public class Player implements Runnable {
 	}
 	
 	private static String randomWord() {
-		return words[(int)Math.round(Math.random() * words.length)];
+		return words[(int)Math.round(Math.random() * (words.length - 1))];
 	}
 
 	private static void broadcastMessage(JSONObject message) {
