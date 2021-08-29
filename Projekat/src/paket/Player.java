@@ -204,14 +204,14 @@ public class Player implements Runnable {
 		response.put("username", this.username);
 		response.put("word", wordGuess);
 		broadcastMessage(response);
-		
+
+		gameInProgress = false;
 		try {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		gameInProgress = false;
 		handleStartGame();
 	}
 	
