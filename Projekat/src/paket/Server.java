@@ -10,6 +10,7 @@ public class Server {
 		ServerSocket server = null;
 		try {
 			server = new ServerSocket(port);
+			System.out.println("Server is running on port " + port);
 			while (true) {
 				new Thread(new Player(server.accept())).start();
 			}
